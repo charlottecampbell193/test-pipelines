@@ -1,0 +1,33 @@
+format_version: 10
+pipelines:
+  test:
+    group: default-group
+    lock_behavior: none
+    display_order: -1
+    stages:
+      - test:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          environment_variables:
+            DOCKER_IMAGE_NAME: test-docker
+            DOCKER_IMAGE_TAG: latest
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            test:
+              timeout: 10
+              tasks:
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - docker build -f Dockerfile.ci -t ${DOCKER_IMAGE_NAME} .
+                    run_if: passed
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - docker tag ${DOCKER_IMAGE_NAME}:latest
+                    run_if: passed
