@@ -5,12 +5,12 @@ pipelines:
     label_template: ${COUNT}
     lock_behavior: unlockWhenFinished
     display_order: 1
-    # materials:
-    #   git:
-    #     git: https://github.com/gocd-demo/k8s-webinar.git
-    #     shallow_clone: true
-    #     auto_update: true
-    #     branch: master
+    materials:
+      git:
+        git: https://github.com/charlottecampbell193/test-pipelines.git
+        shallow_clone: true
+        auto_update: true
+        branch: main
     stages:
     - defaultStage:
         fetch_materials: true
