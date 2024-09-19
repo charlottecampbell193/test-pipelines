@@ -19,6 +19,8 @@ pipelines:
         environment_variables:
           DOCKER_IMAGE_NAME: test-docker
           DOCKER_IMAGE_TAG: latest
+          VAULT_ADDR: http://192.168.143.128:8200
+          VAULT_TOKEN: myroot
         approval:
           type: success
         jobs:
