@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  ci-build-and-test:
+  ci-build-and-test2:
     group: demo
     label_template: ${COUNT}
     lock_behavior: unlockWhenFinished
@@ -29,6 +29,6 @@ pipelines:
             - exec:
                 arguments:
                 - -c
-                - docker build -f Dockerfile.ci -t ${DOCKER_IMAGE_NAME} .
+                - sh test_script.sh
                 command: /bin/bash
                 run_if: passed
